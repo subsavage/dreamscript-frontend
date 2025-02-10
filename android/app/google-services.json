@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "480641258605",
+    "project_id": "dreamscript-9a861",
+    "storage_bucket": "dreamscript-9a861.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:480641258605:android:f79067dc9fffb622d31b64",
+        "android_client_info": {
+          "package_name": "com.example.dreamscript"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5LacdXjJzfDeoHJiHnJu6-v1vUOvq0H0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:480641258605:android:84fd2825bf4fa4fcd31b64",
+        "android_client_info": {
+          "package_name": "com.personal.dreamscript"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5LacdXjJzfDeoHJiHnJu6-v1vUOvq0H0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
