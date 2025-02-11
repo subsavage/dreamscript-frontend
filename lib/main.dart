@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: (settings) {
         if (settings.name == '/home') {
           final args =
-              settings.arguments as Map<String, String>?; // ✅ Expect a Map
+              settings.arguments as Map<String, dynamic>?; // Allow dynamic map
           final String userName = args?['userName'] ?? "Guest";
           final String uid = args?['uid'] ?? "Unknown UID";
           return MaterialPageRoute(

@@ -20,7 +20,11 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 20),
             GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, '/worldselection', arguments: uid);
+                Navigator.pushReplacementNamed(
+                  context,
+                  '/home',
+                  arguments: {"uid": uid, "userName": displayName},
+                );
               },
               child: button(text: "Start"),
             ),
