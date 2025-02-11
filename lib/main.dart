@@ -20,12 +20,15 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       onGenerateRoute: (settings) {
         if (settings.name == '/home') {
-          final String userName = settings.arguments as String;
+          final args =
+              settings.arguments as Map<String, String>?; // ✅ Expect a Map
+          final String userName = args?['userName'] ?? "Guest";
+          final String uid = args?['uid'] ?? "Unknown UID";
           return MaterialPageRoute(
-            builder: (context) => HomePage(userName: userName),
+            builder: (context) => HomePage(displayName: userName, uid: uid),
           );
         }
-        return null; // Default fallback
+        return null;
       },
       routes: {
         '/': (context) => const AuthPage(),

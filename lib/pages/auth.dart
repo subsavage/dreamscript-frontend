@@ -59,14 +59,20 @@ class _AuthPageState extends State<AuthPage> {
           ),
           GestureDetector(
             onTap: () async {
-              User? user = await _authService.signInWithGoogle();
-              if (user != null) {
-                print("User signed in: ${user.displayName}");
+              Map<String, String>? userData =
+                  await _authService.signInWithGoogle();
+              if (userData != null) {
+                String uid = userData["uid"]!;
+                String displayName = userData["displayName"]!;
+
+                print("User signed in with UID: $uid and Name: $displayName");
+
+                // Navigate to HomePage with uid and displayName
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (context) =>
-                        HomePage(userName: user.displayName ?? "User"),
+                        HomePage(uid: uid, displayName: displayName),
                   ),
                 );
               }

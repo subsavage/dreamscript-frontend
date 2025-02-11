@@ -3,34 +3,45 @@ import 'package:dreamscript/widgets/common.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  final String userName;
+  final String uid;
+  final String displayName;
 
-  const HomePage({super.key, required this.userName});
+  const HomePage({super.key, required this.uid, required this.displayName});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      body: Column(
-        children: [
-          Spacer(),
-          titleText("DREAMSCRIPT", 34.0),
-          const SizedBox(height: 25),
-          GestureDetector(
-            onTap: () => Navigator.pushNamed(context, '/worldselection'),
-            child: button(text: "Start"),
-          ),
-          button(text: "Instructions"),
-          Text(
-            "SIgned in as, $userName!",
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w500,
-              fontSize: 14,
+      body: Center(
+        child: Column(
+          children: [
+            const Spacer(),
+            titleText("DREAMSCRIPT", 34.0),
+            const SizedBox(height: 20),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/worldselection', arguments: uid);
+              },
+              child: button(text: "Start"),
             ),
-          ),
-          Spacer(),
-        ],
+            button(text: "Instructions"),
+            const SizedBox(height: 30),
+            Text(
+              "Welcome, $displayName!",
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            Text(
+              "User ID: $uid",
+              style: const TextStyle(color: Colors.grey, fontSize: 10),
+            ),
+            const Spacer(),
+          ],
+        ),
       ),
     );
   }
