@@ -1,5 +1,6 @@
 import 'package:dreamscript/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class button extends StatefulWidget {
   final String text;
@@ -47,5 +48,11 @@ Widget titleText(String text, double fontsize) {
         fontFamily: 'HandwritingDraftShaded',
       ),
     ),
+  );
+}
+
+Widget loadingAnimation() {
+  return Container(
+    child: Lottie.asset("assets/loading.json"),
   );
 }

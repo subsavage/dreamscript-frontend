@@ -2,6 +2,7 @@ import 'package:dreamscript/services/auth_services.dart';
 import 'package:dreamscript/utils/colors.dart';
 import 'package:dreamscript/widgets/common.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class HomePage extends StatelessWidget {
   final String uid;
@@ -51,6 +52,7 @@ class HomePage extends StatelessWidget {
               },
               child: const Text("Sign Out"),
             ),
+            // Lottie.asset("assets/loading.json"),
             const Spacer(),
           ],
         ),
