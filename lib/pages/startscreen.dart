@@ -52,7 +52,6 @@ class HomePage extends StatelessWidget {
               },
               child: const Text("Sign Out"),
             ),
-            // Lottie.asset("assets/loading.json"),
             const Spacer(),
           ],
         ),
