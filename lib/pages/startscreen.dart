@@ -1,3 +1,4 @@
+import 'package:dreamscript/services/auth_services.dart';
 import 'package:dreamscript/utils/colors.dart';
 import 'package:dreamscript/widgets/common.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +43,13 @@ class HomePage extends StatelessWidget {
             Text(
               "User ID: $uid",
               style: const TextStyle(color: Colors.grey, fontSize: 10),
+            ),
+            TextButton(
+              onPressed: () async {
+                await AuthService().signOut();
+                Navigator.pushReplacementNamed(context, "/auth");
+              },
+              child: const Text("Sign Out"),
             ),
             const Spacer(),
           ],

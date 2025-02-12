@@ -2,7 +2,6 @@ import 'package:dreamscript/pages/startscreen.dart';
 import 'package:dreamscript/services/auth_services.dart';
 import 'package:dreamscript/utils/colors.dart';
 import 'package:dreamscript/widgets/common.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -67,7 +66,6 @@ class _AuthPageState extends State<AuthPage> {
 
                 print("User signed in with UID: $uid and Name: $displayName");
 
-                // Navigate to HomePage with uid and displayName
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(

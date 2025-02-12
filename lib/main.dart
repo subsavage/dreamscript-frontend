@@ -1,6 +1,7 @@
 import 'package:dreamscript/pages/auth.dart';
 import 'package:dreamscript/pages/startscreen.dart';
 import 'package:dreamscript/pages/worldselection.dart';
+import 'package:dreamscript/services/wrapper.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -18,20 +19,19 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'DreamScript',
       initialRoute: '/',
-      onGenerateRoute: (settings) {
-        if (settings.name == '/home') {
-          final args =
-              settings.arguments as Map<String, dynamic>?; // Allow dynamic map
-          final String userName = args?['userName'] ?? "Guest";
-          final String uid = args?['uid'] ?? "Unknown UID";
-          return MaterialPageRoute(
-            builder: (context) => HomePage(displayName: userName, uid: uid),
-          );
-        }
-        return null;
-      },
+      // onGenerateRoute: (settings) {
+      //   if (settings.name == '/home') {
+      //     final args = settings.arguments as Map<String, dynamic>?;
+      //     final String userName = args?['userName'] ?? "Guest";
+      //     final String uid = args?['uid'] ?? "Unknown UID";
+      //     return MaterialPageRoute(
+      //       builder: (context) => HomePage(displayName: userName, uid: uid),
+      //     );
+      //   }
+      //   return null;
+      // },
       routes: {
-        '/': (context) => const AuthPage(),
+        '/': (context) => const Wrapper(),
         '/auth': (context) => const AuthPage(),
         '/worldselection': (context) => const WorldSelection(),
       },
