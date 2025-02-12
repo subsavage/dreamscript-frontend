@@ -3,7 +3,6 @@ import 'package:dreamscript/services/auth_services.dart';
 import 'package:dreamscript/utils/colors.dart';
 import 'package:dreamscript/widgets/common.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -14,6 +13,7 @@ class AuthPage extends StatefulWidget {
 
 class _AuthPageState extends State<AuthPage> {
   final AuthService _authService = AuthService();
+  bool _isLoading = false;
 
   Widget googleSignInButton() {
     return Container(
@@ -31,55 +31,73 @@ class _AuthPageState extends State<AuthPage> {
             "assets/images/google_logo.png",
             scale: 24,
           ),
-          const SizedBox(
-            width: 8,
-          ),
+          const SizedBox(width: 8),
           const Text(
             "Sign in with Google",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
+            style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ],
       ),
     );
   }
 
+  void _handleGoogleSignIn() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    Map<String, String>? userData = await _authService.signInWithGoogle();
+
+    if (mounted) {
+      setState(() {
+        _isLoading = false;
+      });
+
+      if (userData != null) {
+        String uid = userData["uid"]!;
+        String displayName = userData["displayName"]!;
+
+        print("User signed in with UID: $uid and Name: $displayName");
+
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomePage(uid: uid, displayName: displayName),
+          ),
+        );
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.backgroundColor,
-      body: Column(
-        children: [
-          Spacer(),
-          titleText("DREAMSCRIPT", 34.0),
-          const SizedBox(
-            height: 25,
+    return Stack(
+      children: [
+        Scaffold(
+          backgroundColor: AppColors.backgroundColor,
+          body: Column(
+            children: [
+              const Spacer(),
+              titleText("DREAMSCRIPT", 34.0),
+              const SizedBox(height: 25),
+              GestureDetector(
+                onTap: _handleGoogleSignIn,
+                child: googleSignInButton(),
+              ),
+              const Spacer(),
+            ],
           ),
-          GestureDetector(
-            onTap: () async {
-              Map<String, String>? userData =
-                  await _authService.signInWithGoogle();
-              if (userData != null) {
-                String uid = userData["uid"]!;
-                String displayName = userData["displayName"]!;
+        ),
 
-                print("User signed in with UID: $uid and Name: $displayName");
-
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        HomePage(uid: uid, displayName: displayName),
-                  ),
-                );
-              }
-            },
-            child: googleSignInButton(),
+        // Overlay when loading
+        if (_isLoading)
+          Container(
+            color: Colors.black.withOpacity(0.5),
+            child: Center(
+              child: loadingAnimation(),
+            ),
           ),
-          Spacer(),
-        ],
-      ),
+      ],
     );
   }
 }

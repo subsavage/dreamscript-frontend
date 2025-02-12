@@ -52,7 +52,8 @@ Widget titleText(String text, double fontsize) {
 }
 
 Widget loadingAnimation() {
-  return Container(
+  return SizedBox(
+    height: 150,
     child: Lottie.asset("assets/loading.json"),
   );
 }

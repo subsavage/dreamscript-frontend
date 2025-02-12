@@ -8,7 +8,7 @@ class AuthService {
   Future<Map<String, String>?> signInWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-      if (googleUser == null) return null; // User canceled sign-in
+      if (googleUser == null) return null;
 
       final GoogleSignInAuthentication googleAuth =
           await googleUser.authentication;
