@@ -1,5 +1,6 @@
 import 'package:dreamscript/pages/auth.dart';
 import 'package:dreamscript/pages/startscreen.dart';
+import 'package:dreamscript/pages/story_page.dart';
 import 'package:dreamscript/pages/worldselection.dart';
 import 'package:dreamscript/services/wrapper.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -19,21 +20,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'DreamScript',
       initialRoute: '/',
-      // onGenerateRoute: (settings) {
-      //   if (settings.name == '/home') {
-      //     final args = settings.arguments as Map<String, dynamic>?;
-      //     final String userName = args?['userName'] ?? "Guest";
-      //     final String uid = args?['uid'] ?? "Unknown UID";
-      //     return MaterialPageRoute(
-      //       builder: (context) => HomePage(displayName: userName, uid: uid),
-      //     );
-      //   }
-      //   return null;
-      // },
       routes: {
-        '/': (context) => const Wrapper(),
+        // '/': (context) => const Wrapper(),
+        '/': (context) => const StoryPage(),
         '/auth': (context) => const AuthPage(),
         '/worldselection': (context) => const WorldSelection(),
+        '/storypage': (context) => const StoryPage(),
       },
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

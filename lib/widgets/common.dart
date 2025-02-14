@@ -57,3 +57,56 @@ Widget loadingAnimation() {
     child: Lottie.asset("assets/loading.json"),
   );
 }
+
+Widget chatField({required VoidCallback onSend}) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceAround,
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: [
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(15),
+            border: Border.all(color: Colors.black, width: 2),
+          ),
+          padding: const EdgeInsets.all(8),
+          child: Image.asset(
+            "assets/icons/magic-wand.png",
+            scale: 20,
+          ),
+        ),
+      ),
+      Expanded(
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(width: 10),
+              Expanded(
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: "Type Your Story..",
+                    border: InputBorder.none,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      MaterialButton(
+        onPressed: onSend,
+        color: Colors.white,
+        padding: const EdgeInsets.all(10),
+        shape: const CircleBorder(),
+        child: const Icon(Icons.send),
+      ),
+    ],
+  );
+}
