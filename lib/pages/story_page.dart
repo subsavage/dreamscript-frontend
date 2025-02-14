@@ -19,6 +19,14 @@ class _StoryPageState extends State<StoryPage> {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: AppColors.backgroundColor,
+          title: titleText(
+            "DREAMSCRIPT",
+            24,
+          ),
+        ),
         backgroundColor: AppColors.backgroundColor,
         body: Stack(
           children: [
