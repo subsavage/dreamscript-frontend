@@ -58,23 +58,27 @@ Widget loadingAnimation() {
   );
 }
 
-Widget chatField({required VoidCallback onSend}) {
+Widget chatField(
+    {required VoidCallback onSend, required VoidCallback onWandTap}) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceAround,
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
       Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(15),
-            border: Border.all(color: Colors.black, width: 2),
-          ),
-          padding: const EdgeInsets.all(8),
-          child: Image.asset(
-            "assets/icons/magic-wand.png",
-            scale: 20,
+        child: GestureDetector(
+          onTap: onWandTap, // **Switch back to chat options when tapped**
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(color: Colors.black, width: 2),
+            ),
+            padding: const EdgeInsets.all(8),
+            child: Image.asset(
+              "assets/icons/magic-wand.png",
+              scale: 20,
+            ),
           ),
         ),
       ),
@@ -108,5 +112,30 @@ Widget chatField({required VoidCallback onSend}) {
         child: const Icon(Icons.send),
       ),
     ],
+  );
+}
+
+Widget chatOptionButton(String text, dynamic icon, VoidCallback onPressed) {
+  return Padding(
+    padding: const EdgeInsets.only(bottom: 10.0),
+    child: ElevatedButton.icon(
+      onPressed: onPressed,
+      icon: icon is String
+          ? Image.asset(
+              icon,
+              width: 20,
+              height: 25,
+            )
+          : Icon(
+              icon,
+              size: 25,
+            ),
+      label: Text(text),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+    ),
   );
 }
