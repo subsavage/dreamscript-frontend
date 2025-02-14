@@ -3,7 +3,9 @@ import 'package:dreamscript/widgets/common.dart';
 import 'package:flutter/material.dart';
 
 class StoryPage extends StatefulWidget {
-  const StoryPage({super.key});
+  final String world;
+
+  const StoryPage({super.key, required this.world});
 
   @override
   State<StoryPage> createState() => _StoryPageState();
@@ -22,19 +24,17 @@ class _StoryPageState extends State<StoryPage> {
         appBar: AppBar(
           elevation: 0,
           backgroundColor: AppColors.backgroundColor,
-          title: titleText(
-            "DREAMSCRIPT",
-            24,
-          ),
+          title: titleText("DREAMSCRIPT", 24),
+          automaticallyImplyLeading: false,
         ),
         backgroundColor: AppColors.backgroundColor,
         body: Stack(
           children: [
-            const Center(
+            Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Story Page"),
+                  Text("Story Page for ${widget.world} World"),
                 ],
               ),
             ),

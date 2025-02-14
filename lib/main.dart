@@ -21,17 +21,22 @@ class MyApp extends StatelessWidget {
       title: 'DreamScript',
       initialRoute: '/',
       routes: {
-        // '/': (context) => const Wrapper(),
-        '/': (context) => const StoryPage(),
+        '/': (context) => const Wrapper(),
         '/auth': (context) => const AuthPage(),
         '/worldselection': (context) => const WorldSelection(),
-        '/storypage': (context) => const StoryPage(),
+      },
+      onGenerateRoute: (settings) {
+        if (settings.name == '/storypage') {
+          final args = settings.arguments as String?;
+          if (args != null) {
+            return MaterialPageRoute(
+              builder: (context) => StoryPage(world: args),
+            );
+          }
+        }
+        return null;
       },
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
     );
   }
 }

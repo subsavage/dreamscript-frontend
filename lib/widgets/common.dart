@@ -4,32 +4,38 @@ import 'package:lottie/lottie.dart';
 
 class button extends StatefulWidget {
   final String text;
+  final VoidCallback onTap;
 
-  const button({Key? key, required this.text}) : super(key: key);
+  const button({Key? key, required this.text, required this.onTap})
+      : super(key: key);
 
   @override
-  State<button> createState() => _buttonState();
+  State<button> createState() => _ButtonState();
 }
 
-class _buttonState extends State<button> {
+class _ButtonState extends State<button> {
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 14.0),
-      child: Container(
-        height: MediaQuery.of(context).size.height * 0.08,
-        width: MediaQuery.of(context).size.width * 0.35,
-        decoration: BoxDecoration(
-          color: AppColors.buttonColor,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Center(
-          child: Text(
-            widget.text,
-            style: const TextStyle(
-              color: AppColors.buttonTextColor,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
+      child: GestureDetector(
+        // Added GestureDetector
+        onTap: widget.onTap,
+        child: Container(
+          height: MediaQuery.of(context).size.height * 0.08,
+          width: MediaQuery.of(context).size.width * 0.35,
+          decoration: BoxDecoration(
+            color: AppColors.buttonColor,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Center(
+            child: Text(
+              widget.text,
+              style: const TextStyle(
+                color: AppColors.buttonTextColor,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),

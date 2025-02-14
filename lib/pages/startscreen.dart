@@ -20,13 +20,16 @@ class HomePage extends StatelessWidget {
             const Spacer(),
             titleText("DREAMSCRIPT", 34.0),
             const SizedBox(height: 20),
-            GestureDetector(
+            button(
+              text: "Start",
               onTap: () {
                 Navigator.pushNamed(context, '/worldselection');
               },
-              child: button(text: "Start"),
             ),
-            button(text: "Instructions"),
+            button(
+              text: "Instructions",
+              onTap: () {},
+            ),
             const SizedBox(height: 30),
             Text(
               "Welcome, $displayName!",
